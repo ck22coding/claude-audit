@@ -37,6 +37,28 @@
 - **Warn:** Missing — nice to have, not critical
 - **Detection:** Check `hooks.Notification` in settings.json
 
+### Workflow — session forking
+- **Pass:** `~/.claude/CLAUDE.md` mentions `/fork` or `--fork-session` in the Workflow section
+- **Warn:** Missing — add this to your Workflow section:
+  ```
+  - Use `/fork` to branch a conversation when exploring multiple approaches (e.g., "try option A" vs "try option B"). From CLI: `claude --continue --fork-session`. Original session stays intact.
+  ```
+- **Detection:** `Grep "fork" ~/.claude/CLAUDE.md`
+- **Auto-fix:** If warn, append the tip to the `# Workflow` section of `~/.claude/CLAUDE.md`
+
+### Workflow — scheduled tasks with /loop
+- **Pass:** `~/.claude/CLAUDE.md` mentions `/loop` in the Workflow section
+- **Warn:** Missing — add this to your Workflow section:
+  ```
+  - Use `/loop <interval> <prompt>` for recurring checks while Claude Code is open:
+    /loop 5m check if the deployment is healthy
+    /loop 15m scan error logs and flag anything new
+    /loop 30m check if CI passed on main
+    Note: tasks are session-scoped (lost when you exit). Use for monitoring, not persistence.
+  ```
+- **Detection:** `Grep "loop" ~/.claude/CLAUDE.md`
+- **Auto-fix:** If warn, append the tip to the `# Workflow` section of `~/.claude/CLAUDE.md`
+
 ---
 
 ## Project Scope (current working directory)

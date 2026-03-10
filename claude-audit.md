@@ -62,6 +62,8 @@ Output a checklist in two sections. Use ✅ for pass, ❌ for fail (must fix), �
 ✅/❌/⚠️  settings.json — deny rules (rm -rf, sudo, force push)
 ✅/❌/⚠️  settings.json — hook wiring (PreToolUse + PostToolUse)
 ✅/❌/⚠️  settings.json — notification hook
+✅/⚠️     CLAUDE.md — /fork tip in Workflow section
+✅/⚠️     CLAUDE.md — /loop tip in Workflow section
 
 ## Project ([show actual cwd])
 ✅/❌/⚠️  CLAUDE.md — [reason if not green]
@@ -170,6 +172,12 @@ If yes:
 - If exists and looks complete: **STOP.** Ask the user: "Your global CLAUDE.md already exists. Do you want me to overwrite it completely? This will replace everything currently in it. Yes / No"
   - If yes: overwrite with updated content
   - If no: skip this item
+
+**Auto-fix: /fork and /loop tips**
+- If `/fork` is missing from the `# Workflow` section of `~/.claude/CLAUDE.md`: append this bullet to the end of the Workflow section:
+  `- Use `/fork` to branch a conversation when exploring multiple approaches — keeps the original session clean.`
+- If `/loop` is missing from the `# Workflow` section of `~/.claude/CLAUDE.md`: append this bullet to the end of the Workflow section:
+  `- Use `/loop 5m <command>` to run a prompt or slash command on a recurring interval (e.g., `/loop 5m check if the deployment is healthy`). Tasks are session-scoped — they stop when you end the session.`
 
 ---
 
